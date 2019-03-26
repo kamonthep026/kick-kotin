@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    var btnLogin: Button? = null
-    var etIdEmail: EditText? = null
-    var etPass : EditText? = null
+    private var btnLogin:Button? = null
+    private var etIdEmail: EditText? = null
+    private var etPass : EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,16 +21,37 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initInstances() {
-        var btnLogin: Button
-        btnLogin = findViewById<View>(R.id.btnLogin) as Button
-        btnLogin.setOnClickListener(this)
-
+        btnLogin = findViewById<Button>(R.id.btnLogin)
+        etIdEmail = findViewById<EditText>(R.id.etIdEmail)
+        etPass = findViewById<EditText>(R.id.etPass)
+        btnLogin!!.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
-        if (v === btnLogin) {
-            Toast.makeText(this@MainActivity, "รหัสผ่านผิดพลาด", Toast.LENGTH_SHORT).show()
-        }
+        etIdEmail?.text
+        etPass?.text
+        if (!isValidIdEmail("email")) {
+                etIdEmail?.error = "ไม่พบบัญชี Email ของคุณ"
+            }
+        if (!isValidPassword("pass")) {
+                etPass?.error = "รหัสผ่านผิดพลาด"
+            }
+    }
 
+    private fun isValidIdEmail(email:String):Boolean {
+        val regex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+        val pattern = Pattern.compile(regex)
+        val matcher = pattern.matcher(email)
+        return matcher.matches()
+    }
+
+    // validating password with retype password
+    private fun isValidPassword(pass:String):Boolean {
+        val regex = "^.{6,}$"
+        val pattern = Pattern.compile(regex)
+        val matcher = pattern.matcher(pass)
+        return matcher.matches()
     }
 }
+
+

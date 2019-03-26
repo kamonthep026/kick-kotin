@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\teen_\\AndroidStudioProjects\\kick-kotin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uk\\values-uk.xml",
+            "outputFile": "F:\\GitKraken\\kick-kotin\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uk\\values-uk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\teen_\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\3bd8736cea457e9d169d0895cca70f78\\res\\values-uk\\values-uk.xml",
